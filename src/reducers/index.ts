@@ -24,7 +24,7 @@ export type Categories = typeof initialState.categories
 export type Search = typeof initialState.search
 
 const reducer = (state = initialState, action: ActionTypes) => {
-  console.log('action', action)
+
   switch (action.type) {
     case SEARCH_VALUE_CHANGE: {
       return {

@@ -41,9 +41,9 @@ const Main = (props: Props) => {
   const favIds = jokes.favourites.map((x: JokeResponse) => x.id)
 
   useEffect(() => {
-    let localFavs: JokeResponse[] = JSON.parse(window.localStorage.getItem('favs') as string)
+    let localFavs: JokeResponse[] = JSON.parse(window.localStorage.getItem('favs') as string) || []
 
-    if (localFavs.length > 0) {
+    if (localFavs && localFavs.length > 0) {
       localFavs.map((x: JokeResponse) => makeFav(x))
     }
 
@@ -70,7 +70,7 @@ const Main = (props: Props) => {
   const handleFav = (joke: JokeResponse, mode: string ) => {
     let localFavs: JokeResponse[] = []
     const parsed = JSON.parse(window.localStorage.getItem('favs') as string)
-    if (parsed.length > 0) localFavs = parsed
+    if (parsed && parsed.length > 0) localFavs = parsed
 
     if (mode === 'remove') {
       removeFav(joke.id)
